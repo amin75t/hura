@@ -40,7 +40,7 @@ class UserCard extends StatelessWidget {
                 children: [
                   Icon(Icons.email),
                   SizedBox(width: 5),
-                  Text(email.substring(10)),
+                  Text(email.substring(3)),
                 ],
               ),
             ],
