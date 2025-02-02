@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../controllers/user_controller.dart';
 
 class AddUserScreen extends StatelessWidget {
@@ -29,19 +30,19 @@ class AddUserScreen extends StatelessWidget {
               return userController.isLoading.value
                   ? CircularProgressIndicator()
                   : ElevatedButton(
-                onPressed: () {
-                  final firstName = firstNameController.text;
-                  final lastName = lastNameController.text;
-                  if (firstName.isNotEmpty && lastName.isNotEmpty) {
-                    userController.addUser(firstName, lastName);
-                    Get.back(); // Go back after adding the user
-                  } else {
-                    Get.snackbar(
-                        'Error', 'Please enter both first and last names');
-                  }
-                },
-                child: Text('Add User'),
-              );
+                      onPressed: () {
+                        final firstName = firstNameController.text;
+                        final lastName = lastNameController.text;
+                        if (firstName.isNotEmpty && lastName.isNotEmpty) {
+                          userController.addUser(firstName, lastName);
+                          Get.back(); // Go back after adding the user
+                        } else {
+                          Get.snackbar('Error',
+                              'Please enter both first and last names');
+                        }
+                      },
+                      child: Text('Add User'),
+                    );
             }),
             // Show error message for adding user if exists
             Obx(() {

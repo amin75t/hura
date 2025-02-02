@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../services/api_service.dart';
-import '../models/user.dart';
+
+import '../../../core/models/user.dart';
+import '../../../core/network/api_service.dart';
 
 class UserController extends GetxController {
   final ApiService apiService = ApiService();
