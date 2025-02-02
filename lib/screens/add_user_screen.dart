@@ -25,19 +25,37 @@ class AddUserScreen extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Last Name'),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                final firstName = firstNameController.text;
-                final lastName = lastNameController.text;
-                if (firstName.isNotEmpty && lastName.isNotEmpty) {
-                  userController.addUser(firstName, lastName);
-                  Get.back(); // Go back to the user list screen after adding the user
-                } else {
-                  Get.snackbar('Error', 'Please enter both first and last names');
-                }
-              },
-              child: Text('Add User'),
-            ),
+            Obx(() {
+              return userController.isLoading.value
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                onPressed: () {
+                  final firstName = firstNameController.text;
+                  final lastName = lastNameController.text;
+                  if (firstName.isNotEmpty && lastName.isNotEmpty) {
+                    userController.addUser(firstName, lastName);
+                    Get.back(); // Go back after adding the user
+                  } else {
+                    Get.snackbar(
+                        'Error', 'Please enter both first and last names');
+                  }
+                },
+                child: Text('Add User'),
+              );
+            }),
+            // Show error message for adding user if exists
+            Obx(() {
+              if (userController.errorMessage.value.isNotEmpty) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    'Error: ${userController.errorMessage.value}',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+              return SizedBox.shrink();
+            }),
           ],
         ),
       ),
