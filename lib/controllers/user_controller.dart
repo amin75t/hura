@@ -15,7 +15,7 @@ class UserController extends GetxController {
     try {
       isLoading(true);
       errorMessage('');
-      var fetchedUsers = await apiService.fetchUsers(1);
+      List<User> fetchedUsers = await apiService.fetchUsers(1);
       users.clear();
       users.addAll(fetchedUsers);
     } catch (e) {

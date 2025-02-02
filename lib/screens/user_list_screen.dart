@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/user_controller.dart';
 import 'add_user_screen.dart';
+import 'componnet/card/card_user.dart';
 
 class UserListScreen extends StatelessWidget {
   final UserController userController = Get.put(UserController());
@@ -33,7 +34,7 @@ class UserListScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final user = userController.users[index];
             return ListTile(
-              title: Text('${user.firstName} ${user.lastName}'),
+              title:UserCard(firstName: user.firstName, lastName: user.lastName, email: user.email, avatar: user.avatar,),
             );
           },
         );
